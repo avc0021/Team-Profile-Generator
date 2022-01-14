@@ -1,0 +1,22 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avc0021/Team-Profile-Generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/avc0021/Team-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/avc0021/Team-Profile-Generator#readme",
+  "devDependencies": {
+    "jest": "^27.4.7"
+  }
+}
