@@ -1,9 +1,7 @@
-const Employee = require('../lib/Emplyoee.js');
+const Employee = require('../lib/Employee.js');
 
 test('creates employee id', () => {
-    const id = new Id('1');
-
-    return
+    console.log(Employee);
+    expect(Employee).toContain(1);
 });
 
-module.exports = Employee;
