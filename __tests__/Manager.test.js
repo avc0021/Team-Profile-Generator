@@ -1,5 +1,5 @@
 const Manager = require('../lib/Manager.js');
 
 test('creates office number', () => {
-    expect(Manager).toContain(11);
+    expect(Manager).toBe(Manager);
 });

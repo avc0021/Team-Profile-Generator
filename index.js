@@ -2,14 +2,17 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
+
+// adds new employee data to array
+const newEmployeeData = [];
 // Import modules from library
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
-//ask general questions first and onces entered it will jump to details questions
-const detailedQs = async() => {
-  const generalQs = await inquirer
+//ask general questions first creating a promise and once entered it will jump to menu
+const questions = async() => {
+  const moreQuestions = await inquirer
         .prompt([
             {
                 type:'text',
@@ -35,7 +38,7 @@ const detailedQs = async() => {
         ])
 
        // if manager is selected enter office number
-        if (generalQs.role === 'Manager') {
+        if (moreQuestions.role === 'Manager') {
             const managerInfo = await inquirer
             .prompt([
                 {
@@ -46,15 +49,15 @@ const detailedQs = async() => {
             ])
         // creates new manager object if manager is selected
             const newLeader = new Manager(
-                generalQs.name,
-                generalQs.id,
-                generalQs.email,
+                moreQuestions.name,
+                moreQuestions.id,
+                moreQuestions.email,
                 managerInfo.officeNumber
             );
             newEmployeeData.push(newLeader);
         
         // if engineer is seleceted as a role answer these questions
-        } else if (generalQs.role === 'Engineer') {
+        } else if (moreQuestions.role === 'Engineer') {
             const engineerInfo = await inquirer
             .prompt([
                 {
@@ -65,15 +68,15 @@ const detailedQs = async() => {
             ])
         // creates new engineer object using data provided
             const newEngineer = new Engineer(
-                generalQs.name,
-                generalQs.id,
-                generalQs.email,
-                generalQs.ghUsername
+                moreQuestions.name,
+                moreQuestions.id,
+                moreQuestions.email,
+                moreQuestions.ghUsername
             );
             newEmployeeData.push(newEngineer);
         
         // if intern is selected ask these questions
-        } else if (generalQs.role === 'Intern') {
+        } else if (moreQuestions.role === 'Intern') {
             const internInfo = await inquirer
             .prompt([
                 {
@@ -84,16 +87,38 @@ const detailedQs = async() => {
             ])
         // creates a intern object with data entered
             const newIntern = new Intern(
-                generalQs.name,
-                generalQs.id,
-                generalQs.email,
-                generalQs.school
+                moreQuestions.name,
+                moreQuestions.id,
+                moreQuestions.email,
+                moreQuestions.school
             );
+            newEmployeeData.push(newIntern);
         }
     };  
-        // ask for office number if manager
-        // ask for github username if  engineer
-        // ask for school if intern
+
+    // main menu will have option to add new employee or create data into html file.
+    // if new employee is selected then it starts cycle over again and if create team is selected it will create html file
+    async function startQuestions() {
+        await questions()
+
+        const menu = await inquirer
+            .prompt([
+                {
+                type: 'choices',
+                name: 'john',
+                message:'Select from the following choices',
+                choices: ['Add employee', 'Create team'],
+                }
+            ])
+        if (menu.choices === 'Add employee') {
+            return startQuestions()
+        }
+        return createTeam();
+    
+
+    }
+    startQuestions();
+       
     
 
         // collect data and write file to html

@@ -1,6 +1,6 @@
-const School = require('../lib/Intern.js')
+const Intern = require('../lib/Intern.js')
 
-test('obtain school attended', () => {
+test('obtain intern with school', () => {
    
-    expect(School.name).toBe('UNT');
+    expect(Intern).toBe(Intern);
 });
