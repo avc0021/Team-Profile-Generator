@@ -8,23 +8,23 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
 //ask questions
-const questions = () => {
-    inquirer
+const detailedQs = async() => {
+  const generalQs = await inquirer
         .prompt([
             {
                 type:'text',
-                name: 'mname',
-                message:'Enter team managers name',
+                name: 'name',
+                message:'Enter your name',
             },
             {
                 type: 'number',
                 name: 'id',
-                message: 'Enter managers ID',
+                message: 'Enter employee ID',
             },
             {
                 type: 'text',
                 name: 'email',
-                message: 'Enter managers email',
+                message: 'Enter your email',
             },
             {
                 type: 'list',
@@ -33,8 +33,27 @@ const questions = () => {
                 choices: ['Manager', 'Engineer', 'Intern'],
             }
         ])
+        console.log(generalQs);
+        if (answers.role === 'Engineer') {
+            const managerInfo = await inquirer
+            .prompt([
+                {
+                    type: 'input',
+                    name: 'officeNumber',
+                    message: 'Enter managers office number'
+                },
+            ])
+            const newLeader = new Manager(
+                answers.name,
+                answers.id,
+                answers.email,
+                managerInfo.officeNumber
+            );
+        }
 
         // ask for office number if manager
         // ask for github username if  engineer
         // ask for school if intern
     };    
+
+        // collect data and write file to html
