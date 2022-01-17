@@ -17,6 +17,7 @@ const layout = (manager, engineer, intern) => {
     `;   
 }; 
 
+// will add all data submitted to fill in html fill
 const generatePage = () => {
 `
 <h2>${manager.getName()}</h2>
