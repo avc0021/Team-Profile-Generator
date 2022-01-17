@@ -103,14 +103,14 @@ const questions = async() => {
 
         const menu = await inquirer
             .prompt([
-                {
-                type: 'choices',
-                name: 'john',
-                message:'Select from the following choices',
+            {
+                type: 'list',
+                message: 'Select from the following',
+                name: 'menu',
                 choices: ['Add employee', 'Create team'],
-                }
+            }
             ])
-        if (menu.choices === 'Add employee') {
+        if (menu.menu === 'Add employee') {
             return startQuestions()
         }
         return createTeam();
