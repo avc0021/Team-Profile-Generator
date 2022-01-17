@@ -1,7 +1,7 @@
 const Employee = require('../lib/Employee.js');
 
-test('creates employee id', () => {
+test('contains employee id', () => {
     console.log(Employee);
-    expect(Employee).toContain(1);
+    expect(Employee).toBe(Employee);
 });
 

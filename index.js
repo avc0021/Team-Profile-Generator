@@ -5,10 +5,12 @@ const fs = require('fs');
 
 // adds new employee data to array
 const newEmployeeData = [];
+
 // Import modules from library
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const generatePage = require('./src/page-template');
 
 //ask general questions first creating a promise and once entered it will jump to menu
 const questions = async() => {
@@ -115,10 +117,15 @@ const questions = async() => {
         }
         return createTeam();
     
+    // create html file
+    function createTeam () {
+        console.log('new employee', newEmployeeData)
+        fs.writeFileSync(
+            './newfile.html', generatePage(newEmployeeData),
+        );
+    }
 
     }
     startQuestions();
        
     
-
-        // collect data and write file to html
