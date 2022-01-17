@@ -5,7 +5,6 @@ const fs = require('fs');
 
 // adds new employee data to array
 const newEmployeeData = [];
-
 // Import modules from library
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
@@ -123,8 +122,7 @@ const questions = async() => {
         fs.writeFileSync(
             './newfile.html', generatePage(newEmployeeData),
         );
-    }
-
+      }
     }
     startQuestions();
        
