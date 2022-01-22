@@ -40,4 +40,4 @@ const generatePage = () => {
 `
 }
 
-module.exports = layout;
+module.exports = { generatePage, layout };
